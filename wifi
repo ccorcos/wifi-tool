@@ -6,34 +6,25 @@
 # Define the path to the airport command
 AIRPORT="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
 
-# Function to display hardware info
-hardware_info() {
-    networksetup -listallhardwareports
-}
-
-# Function to display current connection strength
-current_strength() {
-    ${AIRPORT} -I
-}
-
-# Function to scan for Wi-Fi networks
-scan_networks() {
-    ${AIRPORT} -s
-}
-
 # Main script logic
 case "$1" in
     hardware)
-        hardware_info
+        networksetup -listallhardwareports
         ;;
     strength)
-        current_strength
+        ${AIRPORT} -I
         ;;
     scan)
-        scan_networks
+        ${AIRPORT} -s
+        ;;
+    devices)
+        arp -a
+        ;;
+    ip)
+        ipconfig getifaddr en0
         ;;
     *)
-        echo "Usage: $0 {hardware|strength|scan}"
+        echo "Usage: $0 {hardware|strength|scan|devices|ip}"
         exit 1
         ;;
 esac
