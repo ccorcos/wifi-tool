@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Generated from ChatGPT:
+# https://chat.openai.com/c/45dc02cc-9a96-48c3-a84a-7af0b84d0fa8
+
+# Define the path to the airport command
+AIRPORT="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+
+# Function to display hardware info
+hardware_info() {
+    networksetup -listallhardwareports
+}
+
+# Function to display current connection strength
+current_strength() {
+    ${AIRPORT} -I
+}
+
+# Function to scan for Wi-Fi networks
+scan_networks() {
+    ${AIRPORT} -s
+}
+
+# Main script logic
+case "$1" in
+    hardware)
+        hardware_info
+        ;;
+    strength)
+        current_strength
+        ;;
+    scan)
+        scan_networks
+        ;;
+    *)
+        echo "Usage: $0 {hardware|strength|scan}"
+        exit 1
+        ;;
+esac
