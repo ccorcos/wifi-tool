@@ -1,8 +1,9 @@
 # Wifi Tool
 
-Put the `wifi` command on your path somewhere.
+Put the `wifi` command on your path somewhere and make it executable.
 
 ```sh
+chmod +x wifi
 ln -s `pwd`/wifi $HOME/.local/bin/wifi
 ```
 
